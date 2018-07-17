@@ -105,7 +105,7 @@ func (c *CommonClusterBase) getSshSecret(cluster CommonCluster) (*secret.SecretI
 		log.Info("Ssh secret is nil.. load from vault")
 		s, err := getSecret(cluster.GetOrganizationId(), cluster.GetSshSecretId())
 		if err != nil {
-			log.Errorf("Get ssh key failed OrganizationID: %q, SshSecretID: %q  reason: %s", cluster.GetOrganizationId(), cluster.GetSshSecretId, err.Error())
+			log.Errorf("Get ssh key failed OrganizationID: %d, SshSecretID: %s reason: %s", cluster.GetOrganizationId(), cluster.GetSshSecretId(), err.Error())
 			return nil, err
 		}
 		c.sshSecret = s
@@ -195,6 +195,19 @@ func GetCommonClusterFromModel(modelCluster *model.ClusterModel) (CommonCluster,
 
 	cloudType := modelCluster.Cloud
 	switch cloudType {
+	case pkgCluster.Alibaba:
+		//Create Alibaba struct
+		alibabaCluster, err := CreateAlibabaClusterFromModel(modelCluster)
+		if err != nil {
+			return nil, err
+		}
+
+		log.Debug("Load Alibaba props from database")
+		database.Where(model.AlibabaClusterModel{ClusterModelId: alibabaCluster.modelCluster.ID}).First(&alibabaCluster.modelCluster.Alibaba)
+		database.Model(&alibabaCluster.modelCluster.Alibaba).Related(&alibabaCluster.modelCluster.Alibaba.NodePools, "NodePools")
+
+		return alibabaCluster, nil
+
 	case pkgCluster.Amazon:
 		//Create Amazon struct
 		awsCluster, err := CreateAWSClusterFromModel(modelCluster)
@@ -286,6 +299,14 @@ func CreateCommonClusterFromRequest(createClusterRequest *pkgCluster.CreateClust
 
 	cloudType := createClusterRequest.Cloud
 	switch cloudType {
+	case pkgCluster.Alibaba:
+		//Create Amazon struct
+		alibabaCluster, err := CreateAlibabaClusterFromRequest(createClusterRequest, orgId)
+		if err != nil {
+			return nil, err
+		}
+		return alibabaCluster, nil
+
 	case pkgCluster.Amazon:
 		//Create Amazon struct
 		awsCluster, err := CreateAWSClusterFromRequest(createClusterRequest, orgId, userId)
