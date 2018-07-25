@@ -65,3 +65,6 @@ repositoryUrl = "http://kubernetes-charts.banzaicloud.com/branch/spotguide"
 
 [monitor]
 grafanaAdminUsername = "admin"
+
+[eks]
+templateLocation=

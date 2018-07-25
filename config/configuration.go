@@ -9,11 +9,15 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/spf13/viper"
+	"path/filepath"
 )
 
 const (
 	// local helm path
 	helmPath = "helm.path"
+
+	// the location to get EKS Cloud Formation templates from
+	EksTemplateLocation = "eks.templateLocation"
 )
 
 //Init initializes the configurations
@@ -85,6 +89,8 @@ func init() {
 	viper.SetDefault("monitor.configmap", "")
 	viper.SetDefault("monitor.mountpath", "")
 	viper.SetDefault("monitor.grafanaAdminUsername", "admin")
+
+	viper.SetDefault(EksTemplateLocation, filepath.Join(pwd, "templates", "eks"))
 
 	// Find and read the config file
 	if err := viper.ReadInConfig(); err != nil {
