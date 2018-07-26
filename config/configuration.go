@@ -16,7 +16,7 @@ const (
 	// local helm path
 	helmPath = "helm.path"
 
-	// the location to get EKS Cloud Formation templates from
+	// EksTemplateLocation is the configuration key the location to get EKS Cloud Formation templates from
 	EksTemplateLocation = "eks.templateLocation"
 )
 
