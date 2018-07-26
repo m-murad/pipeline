@@ -171,6 +171,7 @@
     "service/elb",
     "service/iam",
     "service/iam/iamiface",
+    "service/pricing",
     "service/route53",
     "service/route53/route53iface",
     "service/s3",
@@ -1911,6 +1912,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "409124700b294021733c13b713c5e605469b598ae58e3720bf0ac5e88b009279"
+  inputs-digest = "99781478ed41eb320056a9c67707ba8a6d8996e005368ff8f676375dd01ed365"
   solver-name = "gps-cdcl"
   solver-version = 1
