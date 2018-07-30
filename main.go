@@ -98,6 +98,7 @@ func main() {
 		&defaults.AKSNodePoolProfile{},
 		&defaults.GKEProfile{},
 		&defaults.GKENodePoolProfile{},
+		&objectstore.ManagedAlibabaBucket{},
 		&objectstore.ManagedAmazonBucket{},
 		&objectstore.ManagedAzureBlobStore{},
 		&objectstore.ManagedGoogleBucket{},

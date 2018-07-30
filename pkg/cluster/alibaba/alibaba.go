@@ -128,3 +128,9 @@ type ClusterProfileAlibaba struct {
 	ZoneID    string               `json:"zoneid"`
 	NodePools map[string]*NodePool `json:"nodePools,omitempty"`
 }
+
+// CreateAlibabaObjectStoreBucketProperties describes the properties of
+// an OSS bucket creation request
+type CreateAlibabaObjectStoreBucketProperties struct {
+	Location string `json:"location" binding:"required"`
+}
