@@ -11,9 +11,8 @@ package containerengine
 import (
 	"context"
 	"fmt"
-	"net/http"
-
 	"github.com/oracle/oci-go-sdk/common"
+	"net/http"
 )
 
 //ContainerEngineClient a client for ContainerEngine
