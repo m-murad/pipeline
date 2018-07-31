@@ -67,4 +67,4 @@ repositoryUrl = "http://kubernetes-charts.banzaicloud.com/branch/spotguide"
 grafanaAdminUsername = "admin"
 
 [eks]
-templateLocation="https://github.com/banzaicloud/pipeline/tree/eks/templates/eks"
+templateLocation="https://raw.githubusercontent.com/banzaicloud/pipeline/eks/templates/eks"
